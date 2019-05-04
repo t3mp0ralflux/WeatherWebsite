@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model WeatherWebsite.Models.WeatherModel
+
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" style="margin-right: 10px;color: white">
+                <span>@Model.Name</span>
+            </li>
+            <li class="nav-item" style="margin-right: 10px;color: white">
+                <span>@Model.Main.Temp - Current Temp</span>
+            </li>
+            <li class="nav-item" style="margin-right: 10px;color: white">
+                <span>@Model.Main.TempMin - Min Temp</span>
+            </li>
+            <li class="nav-item" style="margin-right: 10px;color: white">
+                <span>@Model.Main.TempMax - Max Temp</span>
+            </li>
+        </ul>
+    </div>
+    
+
+</nav>
