@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.UI;
+using Logger;
 using Newtonsoft.Json;
 using WeatherWebsite.Models;
 
@@ -23,8 +24,19 @@ namespace WeatherWebsite.Controllers
             var webReq = (HttpWebRequest) WebRequest.Create(
                 $"http://api.openweathermap.org/data/2.5/weather?id=4499379&units=imperial&APPID=INSERTKEYHERE");  //gotta put the api key here
             webReq.Method = "GET";
+            Log.LogDebug(GetType(),"Getting Weather");
 
-            var response = (HttpWebResponse) webReq.GetResponse();
+            HttpWebResponse response;
+            try
+            {
+                response = (HttpWebResponse)webReq.GetResponse();
+            }
+            catch (Exception e)
+            {
+                Log.LogError(GetType(),"Trying to get weather data", e);
+                throw;
+            }
+            
 
             string source;
             using (var stream = response.GetResponseStream())   //modified from your code since the using statement disposes the stream automatically when done
